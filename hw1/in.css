@@ -1,0 +1,220 @@
+@charset "utf-8";
+/* CSS Document */
+body
+{
+	font-family: 'courier new', 'heiti sc', 'microsoft yahei';
+	font-size: 16px;
+	line-height: 1.5;
+}
+body,div
+{
+	margin:0px;
+	padding:0px;
+	border:0px;
+}
+a
+{
+	text-decoration:none;
+	text-align:center;
+}
+.clear
+{
+	clear:both;
+}
+.header
+{	
+	min-height:100px;
+	height:auto;
+	width:100%;
+}
+.header-picture
+{
+	background-image:url(image/header.jpg);
+	height:90px;
+	width:100%;
+}
+.stick
+{
+	background-color:#454545;
+	height:30px;
+	width:100%;
+}
+.nevigation
+{
+	
+}
+.body
+{
+	background-color:white;
+	height:auto;
+	width:auto;
+	padding-top:16px;
+	padding-left:20px;
+	padding-right:20px;
+	padding-bottom:16px;
+	min-height:600px;
+}
+.footer
+{
+	height:auto;
+	min-height:50px;
+	width:100%;
+	padding-top:23px;
+	padding-bottom:15px;
+	position:relative;
+	text-align:center;
+}
+div.nevigation
+{
+	float:left;
+	width:70%;
+	height:100%;
+}
+div.searching
+{
+	float:right;
+	width:30%;
+	height:100%;
+}
+ul
+{
+	list-style:none;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+	height:100%;
+}
+li
+{
+	float:left;
+	height:100%;
+}
+a,li,ul
+{
+	vertical-align:middle;
+}
+
+div.nevigation a:link,div.nevigation a:visited
+{
+	display:block;
+	width:90px;
+	text-align:center;
+	font-weight:bold;
+	color:#ffffff;
+	text-decoration:none;
+	height:100%;
+	font-size:large;
+	padding-top:2px;
+}
+div.nevigation a:hover,div.nevigation a:active
+{
+background-color:#cc0000;
+}
+.search-and-about-me
+{
+	height:100%;
+	width:100%;
+}
+.about-me
+{
+	display:block;
+	float:right;
+	padding-right:20px;
+	height:100%;
+	text-align:right;
+	width:80px;
+	font-weight:bold;
+	color:#ffffff;
+	text-decoration:none;
+	height:100%;
+	font-size:large;
+	padding-top:2px;
+}
+
+.about-me:hover,about-me:active
+{
+	color:red;
+}
+.body-left
+{
+	float:left;
+	background-color:#efefef;
+	min-height:600px;
+	height:auto;
+	width:80%;
+	position:relative;
+	border:2px #454545 solid;
+}
+.body-right
+{
+	background-color:white;
+	float:right;
+	min-height:600px;
+	height:auto;
+	width:15%;
+}
+
+.new
+{
+	
+	min-height:400px;
+	height:auto;
+}
+
+.new div
+{
+	background-color:#efefef;
+	min-height:40px;
+	height:auto;
+	margin-bottom:5px;
+	border:2px #efefef outset;
+	padding:10px;
+	margin:6px;
+}
+
+.new span
+{
+	font-weight:bold;
+}
+.pages
+{
+	width:auto;
+	margin:6px;
+	padding:6px;
+	height:40px;
+	color:black;
+}
+
+.pages div
+{
+	float:left;
+	padding:3px;
+	text-align:center;
+}
+.pages a
+{
+	display:block;
+	text-decoration:none;
+	font-size:larger;
+}
+.pages a:hover,.pages a:active
+{
+	color:green;
+}
+.friends a
+{
+	font-size:medium;
+}
+.header-picture h1
+{
+	margin:0px; 
+	padding-top:14px;
+}
+.header-picture
+{
+	font-weight:bold;
+}
+.nevigation a.first
+{
+	background-color:red;
+}
