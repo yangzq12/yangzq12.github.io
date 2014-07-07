@@ -188,5 +188,5 @@ n_cycle=0;
 		$("#show_image3").show();
 		}
 		n_cycle++;
-		setTimeout("cycle()",5000);
+		setTimeout("cycle()",15000);
 		}
