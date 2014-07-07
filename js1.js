@@ -1,5 +1,53 @@
 ﻿// JavaScript Document
 $(document).ready(function(){
+var my_div=$("<div></div>");
+var my_a=$("div.center_module");
+my_a.before(my_div);
+my_a.parent().css("position","relative");
+
+my_h=my_a.height();
+my_div.css({"margin":"10px","position":"absolute","width":"1213px","height":my_h+"px","top":"0px","left":"0px","border":"1px solid #cecece","z-index":"0"});
+var show_image1=$("<img>");
+var show_image2=$("<img>");
+var show_image3=$("<img>");
+show_image1.attr("src","http://yangzq12.github.io/image/1.jpg");
+show_image2.attr("src","http://yangzq12.github.io/image/2.jpg");
+show_image3.attr("src","http://yangzq12.github.io/image/3.jpg");
+
+my_div.append(show_image1);
+my_div.append(show_image2);
+my_div.append(show_image3);
+
+show_image1.hide();
+show_image2.hide();
+show_image3.hide();
+my_div.attr("id","my_div");
+
+n_cycle=0;
+function cycle()
+{
+if(n_cycle%3==0)
+{
+show_image1.show();
+show_image2.hide();
+show_image3.hide();
+}
+else if(n_cycle%3==1)
+{
+show_image1.hide();
+show_image2.show();
+show_image3.hide();
+}
+else
+{
+show_image1.hide();
+show_image2.hide();
+show_image3.show();
+}
+n_cycle++;
+setTimeout("cycle()",5000);
+}
+
 var a=$("<div>收起/放下</div>");
 a.css({"color":"rgb(44,250,5)","text-align":"center","font-size":"15px","padding":"6px"});
 a.addClass("down-up");
@@ -22,7 +70,9 @@ e=e[1];
 $(e).append(d);
 	d.click(function(){
 		c=$(".center_module");
-		c.animate({width:'300px',opacity:'0.4'},"slow");
+		c.animate({width:'0px'},"slow");
+		var c_c=$("#my_div");
+		c_c.animate({width:w+"px"},"slow");
 		});
 
 f=$("<input>");
@@ -34,8 +84,10 @@ var g=$(".left");
 g=g[1];
 $(g).append(f);
 	f.click(function(){
+		var c_c=$("#my_div");
+		c_c.animate({width:"0px"},"slow");
 		c=$(".center_module");
-		c.animate({width:w+"px",opacity:"1"},"slow");
+		c.animate({width:w+"px"},"slow");	
 		});
 
 var a2=$("#wrap");
@@ -56,17 +108,18 @@ b2.append(c2);
 
 var d2=$("<div></div>");
 d2.attr("id","information-name");
-d2.css({"background": "rgb(240, 178, 178)","height": "270px","overflow": "auto","padding":"5px","margin-top":"5px"});
+d2.css({"height": "270px","overflow": "auto","padding":"5px","margin-top":"5px"});
 
 c2.before(d2);
 
 d2.html("<p>未交作业提醒</p><ul></ul><p>新文件提醒</p><ul></ul><p>未读公告提醒</p><ul></ul>");
 var e2=$("ul",d2);
 var f2=$("p",d2);
+d2.css("backgroundImage","url(http://yangzq12.github.io/image/th.jpg)");
 
 f2.css({"color":"yellow","font-size":"15px","margin-bottom":"5px","margin-top":"5px","text-align":"left"});
 
-e2.css({"list-style": "square inside url('images/eg_arrow.gif')","text-align":"left"});
+e2.css({"list-style": "square inside url('http://yangzq12.github.io/image/eg_arrow.gif')","text-align":"left"});
 
 c2.click(function(){var s=$("#information-name");s.slideToggle()});
 
@@ -106,5 +159,6 @@ if(cout2==false)
 	$(e2[1]).append("<li>无</li>");
 if(cout3==false)
 	$(e2[2]).append("<li>无</li>");
+cycle();
 });
 
