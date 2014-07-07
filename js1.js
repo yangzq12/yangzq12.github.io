@@ -13,7 +13,9 @@ var show_image3=$("<img>");
 show_image1.attr("src","http://yangzq12.github.io/image/1.jpg");
 show_image2.attr("src","http://yangzq12.github.io/image/2.jpg");
 show_image3.attr("src","http://yangzq12.github.io/image/3.jpg");
-
+show_image1.attr("id","show_image1");
+show_image2.attr("id","show_image2");
+show_image3.attr("id","show_image3");
 my_div.append(show_image1);
 my_div.append(show_image2);
 my_div.append(show_image3);
@@ -73,6 +75,8 @@ $(e).append(d);
 		c.animate({width:'0px'},"slow");
 		var c_c=$("#my_div");
 		c_c.animate({width:w+"px"},"slow");
+		cycle();
+
 		});
 
 f=$("<input>");
@@ -159,6 +163,30 @@ if(cout2==false)
 	$(e2[1]).append("<li>无</li>");
 if(cout3==false)
 	$(e2[2]).append("<li>无</li>");
-cycle();
+
 });
 
+n_cycle=0;
+		cycle=function ()
+		{
+		if(n_cycle%3==0)
+		{
+		$("#show_image1").show();
+		$("#show_image2").hide();
+		$("#show_image3").hide();
+		}
+		else if(n_cycle%3==1)
+		{	
+		$("#show_image1").hide();
+		$("#show_image2").show();
+		$("#show_image3").hide();
+		}
+		else
+		{
+		$("#show_image1").hide();
+		$("#show_image2").hide();
+		$("#show_image3").show();
+		}
+		n_cycle++;
+		setTimeout("cycle()",5000);
+		}
