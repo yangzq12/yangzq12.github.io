@@ -1,0 +1,69 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	margin:0px 10px;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:12px;
+}
+.up{
+	width:800px;
+	height:300px;
+	background:red;	
+	margin:auto;
+}
+.down
+{
+	width:800px;
+	height:900px;
+	background:blue;
+	margin:auto;
+}
+#images{
+	width:560px;
+	height:300px;
+	background:blue;
+	margin:auto;
+}
+#back,#next{
+	display:block;
+	float:left;
+	width:30px;
+	height:300px;
+	background:green;
+}
+#show-images{
+	float:left;
+	width:500px;
+	overflow:hidden;
+	height:300px;
+	background-color:white;
+	position:relative;
+}
+#all-images{
+	height:300px;
+	position:absolute;
+	left:0px;
+	bottom:0px;
+	background-color:gray;
+}
+#images-comment{
+	position:absolute;
+	left:10px;
+	bottom:5px;
+	font-weight:bold;
+	background-color:black;
+	width:200px;
+	height:50px;
+	background-color:yellow;
+}
+.image{
+	height:300px;
+	width:520px;
+	padding:0px 10px;
+	background-color:white;
+	float:left;
+}
+
+
+	
