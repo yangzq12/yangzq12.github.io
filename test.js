@@ -214,6 +214,7 @@ $(document).ready(function(){
 		my_comment.data_obj=data;
 		my_comment.prepare();
 	});
+	my_picture.imgsize();
 });
 
 
