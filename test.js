@@ -1,4 +1,4 @@
-// JavaScript Document
+﻿// JavaScript Document
 
 function picture(){
 this.data_obj = null;
@@ -239,7 +239,7 @@ var my_comment=new comment();
 
 $(document).ready(function(){
 	$.getJSON("images_comments.json",function(data){
-		my_picture.obj=data;
+		my_picture.data_obj=data;
 		my_picture.prepare();
 	});$.getJSON("images_comments_1.json",function(data){
 		my_comment.data_obj=data;
@@ -248,16 +248,6 @@ $(document).ready(function(){
 	
 	my_picture.getStorage();
 	my_comment.prepare();
-	my_picture.data_obj=[
-		{"comment":"item1","location":"image/11.jpg"},
-		{"comment":"item2","location":"image/12.jpg"},
-		{"comment":"item3","location":"image/13.jpg"},
-		{"comment":"item4","location":"image/14.jpg"},
-		{"comment":"item5","location":"image/15.jpg"},
-		{"comment":"item6","location":"image/16.jpg"},
-		{"comment":"item7","location":"image/17.jpg"},
-		{"comment":"item8","location":"image/18.jpg"}		
-]
 	my_picture.prepare();
 	my_picture.imgsize();
 	my_picture.autoCast();
