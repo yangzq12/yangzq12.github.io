@@ -1,6 +1,4 @@
-﻿// JavaScript Document
-
-function picture(){
+﻿function picture(){
 this.data_obj = null;
 this.current = 0;
 this.last_current = 0;
@@ -222,14 +220,17 @@ $(document).ready(function(){
 	$.getJSON("images_comments.json",function(data){
 		my_picture.data_obj=data;
 		my_picture.prepare();
+		my_picture.getStorage();
+	
+		my_picture.imgsize();
+		my_picture.autoCast();
 	});$.getJSON("images_comments_1.json",function(data){
 		my_comment.data_obj=data;
 		my_comment.prepare();
 	});
-	my_picture.getStorage();
 	
-	my_picture.imgsize();
-	my_picture.autoCast();
+
+	
 });
 
 $(window).unload(function(){
