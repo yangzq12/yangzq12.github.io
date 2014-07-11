@@ -23,26 +23,6 @@ this.getStorage=function(){
 }
 this.imgsize = function(){
 	$("#all-images img").each(function(){
-		/*var imgWidth=$(this).width();
-		var imgHeight=$(this).height();
-		
-		if(imgWidth > 500){
-			$(this).width(500);
-		}else{
-			$(this).width("auto");
-			var mleft=(500-imgWidth)/2;
-			$(this).css("margin-left",mleft+"px");
-			
-		}
-		if(imgHeight>300){
-			$(this).height(300);
-			$(this).css("margin-top",0);
-		}else
-		{
-			$(this).height("auto");
-			var mtop=(300-imgHeight)/2;
-			$(this).css("margin-top",mtop+"px");
-		}*/
 		$("#all-images img").each(function(){$(this).width(500);$(this).height(300);});
 		});
 		
@@ -238,15 +218,38 @@ var my_picture=new picture();
 var my_comment=new comment();
 
 $(document).ready(function(){
+/*
 	$.getJSON("images_comments.json",function(data){
 		my_picture.data_obj=data;
 		my_picture.prepare();
 	});$.getJSON("images_comments_1.json",function(data){
 		my_comment.data_obj=data;
 		my_comment.prepare();
-	});
-	
+	});*/
+
+	my_picture.data_obj=[
+		{"comment":"item1","location":"image/11.jpg"},
+		{"comment":"item2","location":"image/12.jpg"},
+		{"comment":"item3","location":"image/13.jpg"},
+		{"comment":"item4","location":"image/14.jpg"},
+		{"comment":"item5","location":"image/15.jpg"},
+		{"comment":"item6","location":"image/16.jpg"},
+		{"comment":"item7","location":"image/17.jpg"},
+		{"comment":"item8","location":"image/18.jpg"}		
+]
+	my_comment.data_obj={
+	"num":"65",
+	"comments":[{"name":"1", "comment":"ok"},{"name":"2", "comment":"ok"},{"name":"3", "comment":"ok"},{"name":"5", "comment":"ok"},{"name":"5", "comment":"ok"},{"name":"6", "comment":"ok"},{"name":"7", "comment":"ok"},{"name":"8", "comment":"ok"},{"name":"9", "comment":"ok"},{"name":"10", "comment":"ok"},
+				{"name":"11", "comment":"ok"},{"name":"12", "comment":"ok"},{"name":"13", "comment":"ok"},{"name":"14", "comment":"ok"},{"name":"15", "comment":"ok"},{"name":"16", "comment":"ok"},{"name":"16", "comment":"ok"},{"name":"18", "comment":"ok"},{"name":"19", "comment":"ok"},{"name":"20", "comment":"ok"},
+				{"name":"21", "comment":"ok"},{"name":"22", "comment":"ok"},{"name":"23", "comment":"ok"},{"name":"24", "comment":"ok"},{"name":"25", "comment":"ok"},{"name":"26", "comment":"ok"},{"name":"27", "comment":"ok"},{"name":"28", "comment":"ok"},{"name":"29", "comment":"ok"},{"name":"30", "comment":"ok"},
+				{"name":"31", "comment":"ok"},{"name":"32", "comment":"ok"},{"name":"33", "comment":"ok"},{"name":"34", "comment":"ok"},{"name":"35", "comment":"ok"},{"name":"36", "comment":"ok"},{"name":"37", "comment":"ok"},{"name":"38", "comment":"ok"},{"name":"39", "comment":"ok"},{"name":"40", "comment":"ok"},
+				{"name":"41", "comment":"ok"},{"name":"42", "comment":"ok"},{"name":"43", "comment":"ok"},{"name":"44", "comment":"ok"},{"name":"45", "comment":"ok"},{"name":"46", "comment":"ok"},{"name":"47", "comment":"ok"},{"name":"48", "comment":"ok"},{"name":"49", "comment":"ok"},{"name":"50", "comment":"ok"},
+				{"name":"51", "comment":"ok"},{"name":"52", "comment":"ok"},{"name":"53", "comment":"ok"},{"name":"54", "comment":"ok"},{"name":"55", "comment":"ok"},{"name":"56", "comment":"ok"},{"name":"57", "comment":"ok"},{"name":"58", "comment":"ok"},{"name":"59", "comment":"ok"},{"name":"60", "comment":"ok"},
+				{"name":"61", "comment":"ok"},{"name":"62", "comment":"ok"},{"name":"63", "comment":"ok"},{"name":"64", "comment":"ok"},{"name":"65", "comment":"ok"}]
+}
 	my_picture.getStorage();
+	my_comment.prepare();
+	my_picture.prepare();
 	my_picture.imgsize();
 	my_picture.autoCast();
 });
