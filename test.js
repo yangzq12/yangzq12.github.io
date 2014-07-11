@@ -208,7 +208,7 @@ var my_comment=new comment();
 
 $(document).ready(function(){
 	$.getJSON("images_comments.json",function(data){
-		my_picture.obj=data;
+		my_picture.data_obj=data;
 		my_picture.prepare();
 	});$.getJSON("images_comments_1.json",function(data){
 		my_comment.data_obj=data;
