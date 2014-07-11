@@ -247,8 +247,6 @@ $(document).ready(function(){
 	});
 	
 	my_picture.getStorage();
-	my_comment.prepare();
-	my_picture.prepare();
 	my_picture.imgsize();
 	my_picture.autoCast();
 });
