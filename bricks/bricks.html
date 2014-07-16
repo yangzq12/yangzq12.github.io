@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>打砖块</title>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js">
+</script>
+<link rel="stylesheet" type="text/css" href="bricks.css">
+</head>
+<body>
+	<div id="container" align="center">
+		<div id="header">
+		</div>
+		<ul>
+			<li style="display:block">
+			<div id="startPage" class="page">
+				<div class="littleicon">
+					<img src="image/6.png" style="width:50px height:50px">
+				</div>
+				<div id="icon">
+					<img src="image/1.png" style="width:100%">
+				</div>
+				<button id="classicmode" style="font-size:28px">Classic Mode</button>
+				<button id="crazymode" style="font-size:28px">Crazy Mode</button>
+				<button id="helpbutton">Help</button>
+			</div>
+			</li>
+			<li style="display:none">
+				<div id="playPage" class="page">
+					<canvas id="ctx" width="800" height="600"></canvas>
+					<div id="levelname">打砖块</div>
+					<div id="ballsleft"></div>
+				</div>
+			</li>
+			<li style="display:none">
+			<div id="winPage" class="page">
+				<p>Level Complete!</p>
+				<button id="nextlevel">Next Level</button>
+				<button class="mainmenu">Main Menu</button>
+			</div>
+			</li>
+			<li style="display:none">
+			<div id="losePage"  class="page">
+				<div class="littleicon">
+					<img src="image/6.png" style="width:50px height:50px">
+				</div>
+				<p>You Have Passed 0 levels!</p>
+				<button id="retry">Retry</button>
+				<button class="mainmenu">Main Menu</button>
+			</div>
+			</li>
+			<li style="display:none">
+			<div id="help"  class="page">
+				<div class="littleicon">
+					<img src="image/6.png" style="width:50px height:50px">
+				</div>
+				<div class="rule">
+                	<h4 style="margin:0px">经典模式：</h4>
+				  <p>操作方法：空格键控制小球弹起，左右方向键或鼠标移动控制小棒移动，Ctrl键控制小球粘在小棒上。A键暂停。S键开始。</p>
+				  <p>游戏规则：玩家控制小球击打砖块，被打中的砖块会消失。所有砖块消失则过关，小球落地则损失一颗小球，每关有三颗小球，全部损失后则失败。</p>
+                </div>
+				<div class="rule">
+                	<h4 style="margin:0px">疯狂模式：</h4>
+				    <p>元素类型：
+                    	<p class="element">小怪兽：可以站在砖块上或泥巴上，发现周围有砖块消失时，会不顾一切地向这个方向前进。</p>
+                        <p class="element">奥特曼：小怪兽的目的地，很脆弱。。。</p>
+                        <p class="element">砖块：小球击打砖块时砖块会消失，可建造。</p>
+                        <p class="element">泥巴：小球可以穿过泥巴，可建造。</p>
+                        <p class="element">铁板：小球击打铁板时发生反弹，铁板不会消失，不可建造。</p>
+                    </p>
+                    <p>
+					操作方法：空格键控制小球弹起，左右方向键或鼠标移动控制小棒移动，Ctrl键控制小球粘在小棒上。S键暂停。
+							  小球经过已经被打掉的砖块的位置时，点击鼠标左键，即在该位置建造砖块。按住Ctrl键的同时点击鼠标左键，即在该位置建造泥巴。
+                    </p>
+                    <p>
+					游戏规则：玩家通过控制小球击打砖块和建造砖块、泥巴两种操作，将小怪兽送达目的地则过关，若小球打中目的地，则损失一条命，每关三条命。
+                    </p>
+			</div>
+			</li>
+		</ul>
+		</div>
+	</div>
+	<audio loop autoplay="true">
+  		<source src="music/1.mp3" type="audio/mp3" />
+  		<source src="music/1.ogg" type="audio/ogg" />
+	</audio>
+	<script "text/javascript" src="Game.js"></script>
+</body>
+</html>
