@@ -673,7 +673,7 @@ for(var i = 0; i < 30; i++)
 {
 var j = i+1;
 s_imageBackground_1[i] = new Image();
-s_imageBackground_1[i].src = "image/background/background_"+j+".jpg";
+s_imageBackground_1[i].src = "image/background/background_"+j+".JPG";
 }
 
 var s_imageBackground_0 = new Array();
@@ -681,7 +681,7 @@ for(var i = 0; i < 30; i++)
 {
 var j = i+1;
 s_imageBackground_0[i] = new Image();
-s_imageBackground_0[i].src = "image/background/background_"+j+".jpg";
+s_imageBackground_0[i].src = "image/background/background_"+j+".JPG";
 }
 
 var s_imageBricks_0 = new Array;
