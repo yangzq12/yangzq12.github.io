@@ -3,11 +3,41 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="in.css" rel="stylesheet">
+<script src="jquery-1.5.2.min.js"></script>
 <title>主页</title>
 </head>
 
 <body>
 <!-- 头部-->
+<div id="music">
+	<div id="audio-container">
+	<audio src="music/Big Four - 爱莫能助.mp3" controls="controls" id="music-audio">
+    </audio>
+    <div>
+    <style>
+	#music{
+		position:absolute;
+		top:0px;
+		left:40%;
+	}
+	</style>
+    <script>
+	var i=1;
+	var m_src=["music/Big Four - 爱莫能助.mp3","music/张卫健 - 少年梦 - 少年英雄方世玉.mp3","music/明道 - 突然好想爱她.mp3"];
+	setInterval(function(){
+		if($("#music-audio")[0].ended) 
+			{
+				$("#music-audio").attr("src",m_src[i%3]);
+				i++;
+				$("#music-audio")[0].play();
+			}
+	},1000);
+	var n=0;
+	var obj=document.getElementById("music"); //position:fixed对象
+	window.onscroll=function(){obj.style.top=(document.body.scrollTop||document.documentElement.scrollTop)+n+'px';}
+	window.onresize=function(){obj.style.top=(document.body.scrollTop||document.documentElement.scrollTop)+n+'px';}
+	</script>
+</div>
 <div class="header">
 	<div class="header-picture">
     	<h1>异次元空间</h1>
