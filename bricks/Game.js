@@ -389,6 +389,7 @@ function Bricks(w, h, r, c, p, image,map){
 	this.draw = function(ctx){
 		var that = this;
 		var b = this.brick;
+		var flag = true;
 		for(var i = 0; i < this.r;i++)
 		for(var j= 0; j<this.c;j++)
         	if (this.bricks[i][j].state != 0 && this.bricks[i][j].state != 7) {
@@ -401,8 +402,12 @@ function Bricks(w, h, r, c, p, image,map){
                 	ctx.fill();*/
 					if(this.bricks[i][j].state == 6)
 					u_winOrLose = true;
+					if(this.bricks[i][j].state == 1)
+					flag = false;
 					ctx.drawImage(that.image[that.bricks[i][j].state-1],(j * (b.w + 2*b.p)) + b.p, (i * (b.h + 2*b.p)) + b.p, b.w, b.h);
     			}
+		if(flag == true && u_mode == 0)
+		u_winOrLose = true;
 				
 	}
 	
@@ -712,9 +717,9 @@ s_sounds_1[3].volume = 0.6;
 
 var s_sounds_0= new Array();
 
-s_sounds_0[0] = new Audio('audio/clush_0.mp3');
+s_sounds_0[0] = new Audio('audio/clush.mp3');
 s_sounds_0[0].volume = 0.6;
-s_sounds_0[1] = new Audio('audio/colla_0.mp3');
+s_sounds_0[1] = new Audio('audio/colla.mp3');
 s_sounds_0[1].volume = 0.6;
 s_sounds_0[2] = new Audio('audio/win.mp3');
 s_sounds_0[2].volume = 0.6;
