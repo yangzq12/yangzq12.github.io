@@ -654,6 +654,9 @@ var u_sounds;
 var u_soundOn = true;
 var u_ballUpOrDown = true;//true表示球在下面，false表示球在上面
 var u_obj = null;
+var u_mode=0;
+var u_level=1;
+var u_balls=2;
 
 var s_imageBang_1 = new Image();        //所有资源以s开头
 var s_imageBall_1 = new Image();
@@ -922,13 +925,8 @@ $.getJSON("Game.json",function(data){
 		w_getSrc();
 		window.resourcesLoad();
 		});
-});
-
-//////////////////界面交互函数////////////////////////////             //界面函数部分只用到u_gamgStart和u_gameTimer两个全局变量和w_start一个全局函数
-var u_mode=0;
-var u_level=1;
-var u_balls=2;
-$("#classicmode").click(function () {
+		//////////////////界面交互函数////////////////////////////             //界面函数部分只用到u_gamgStart和u_gameTimer两个全局变量和w_start一个全局函数
+		$("#classicmode").click(function () {
   u_mode = 0;
   $($("li")[0]).css("display","none");
   $($("li")[6]).css("display","block");
@@ -1211,3 +1209,6 @@ $(".littleicon").click(function(){
     $($(".littleicon")[1].children[0]).attr("src","image/6.png");
   }
 })
+});
+
+
