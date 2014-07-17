@@ -1,7 +1,7 @@
 ﻿// JavaScript Document
 //////////////////////////定义对象//////////////////////////////////////
 
-//小球对象
+//时间对象
 function Time(){
 	
 	this.timeCounter = 0;
@@ -13,16 +13,15 @@ function Time(){
 	u_myTime.minutes = Math.floor(u_myTime.timeCounter / 60);
    	u_myTime.seconds = u_myTime.timeCounter % 60;
 }
+
 	this.draw = function(ctx){
 		var that = this;
 		ctx.font="30px Verdana";
-// Create gradient
-// Fill with gradient
-ctx.fillStyle="black";
-	//ctx.fillstyle = "#fff";
-    ctx.fillText('用时: ' + that.minutes + '分' + that.seconds+'秒', 550, 50);
+		ctx.fillStyle="black";
+		ctx.fillText('用时: ' + that.minutes + '分' + that.seconds+'秒', 550, 50);
 	}
 }
+//小球对象
 function Ball(x, y, r, dx, dy, image, auto) {      //球，这里把小球当做一个正方形，
     this.x = x;            //小球圆点坐标（x,y)
     this.y = y;
@@ -654,83 +653,65 @@ var u_map;
 var u_sounds;
 var u_soundOn = true;
 var u_ballUpOrDown = true;//true表示球在下面，false表示球在上面
+var u_obj;
 
-var s_imageBang_1 = new Image();
+var s_imageBang_1 = new Image();        //所有资源以s开头
 var s_imageBall_1 = new Image();
 var s_imageBang_0 = new Image();
 var s_imageBall_0 = new Image();
 
-s_imageBang_1.src = 'image/padd.png';
-s_imageBall_1.src = "image/ball.jpg";
-s_imageBang_0.src = 'image/padd.png';
-s_imageBall_0.src = "image/ball.jpg";
 
 var s_imageBricks_1 = new Array;
-s_imageBricks_1[0] = new Image();
-s_imageBricks_1[0].src = "image/wall.gif";
-s_imageBricks_1[1] = new Image();
-s_imageBricks_1[1].src = "image/steel.gif";
-s_imageBricks_1[2] = new Image();
-s_imageBricks_1[2].src = "image/sea.gif";
-s_imageBricks_1[3] = new Image();
-s_imageBricks_1[3].src = "image/itank.gif";
-s_imageBricks_1[4] = new Image();
-s_imageBricks_1[4].src = "image/podium.gif";
-s_imageBricks_1[5] = new Image();
-s_imageBricks_1[5].src = "image/win.jpg";
-
 var s_imageBackground_1 = new Array();
-for(var i = 0; i < 30; i++)
-{
-var j = i+1;
-s_imageBackground_1[i] = new Image();
-s_imageBackground_1[i].src = "image/background/background_"+j+".JPG";
-}
-
 var s_imageBackground_0 = new Array();
-for(var i = 0; i < 30; i++)
-{
-var j = i+1;
-s_imageBackground_0[i] = new Image();
-s_imageBackground_0[i].src = "image/background/background_"+j+".JPG";
-}
-
 var s_imageBricks_0 = new Array;
-s_imageBricks_0[0] = new Image();
-s_imageBricks_0[0].src = "image/wall.gif";
-s_imageBricks_0[1] = new Image();
-s_imageBricks_0[1].src = "image/steel.gif";
-s_imageBricks_0[2] = new Image();
-s_imageBricks_0[2].src = "image/sea.gif";
-s_imageBricks_0[3] = new Image();
-s_imageBricks_0[3].src = "image/itank.gif";
-s_imageBricks_0[4] = new Image();
-s_imageBricks_0[4].src = "image/podium.gif";
-s_imageBricks_0[5] = new Image();
-s_imageBricks_0[5].src = "image/win.jpg";
-
-
 var s_sounds_1= new Array();
-s_sounds_1[0] = new Audio('audio/clush.mp3');
-s_sounds_1[0].volume = 0.6;
-s_sounds_1[1] = new Audio('audio/colla.mp3');
-s_sounds_1[1].volume = 0.6;
-s_sounds_1[2] = new Audio('audio/win.mp3');
-s_sounds_1[2].volume = 0.6;
-s_sounds_1[3] = new Audio('audio/lose.mp3');
-s_sounds_1[3].volume = 0.6;
-
-
 var s_sounds_0= new Array();
 
-s_sounds_0[0] = new Audio('audio/clush.mp3');
-s_sounds_0[0].volume = 0.6;
-s_sounds_0[1] = new Audio('audio/colla.mp3');
-s_sounds_0[1].volume = 0.6;
-s_sounds_0[2] = new Audio('audio/win.mp3');
-s_sounds_0[2].volume = 0.6;
-s_sounds_0[3] = new Audio('audio/lose.mp3');
-s_sounds_0[3].volume = 0.6;
+function w_getSrc()
+{
+s_imageBang_1.src = u_obj.s_imageBang_1;
+s_imageBall_1.src = u_obj.s_imageBall_1;
+s_imageBang_0.src = u_obj.s_imageBang_0;
+s_imageBall_0.src = u_obj.s_imageBall_0;
+
+for(var i = 0; i < u_obj.s_imageBricks_1.length;i++)
+{
+	s_imageBricks_1[i] = new Image();
+	s_imageBricks_1[i].src = u_obj.s_imageBricks_1[i];
+}
+
+for(var i = 0; i < u_obj.s_imageBackground_1.length; i++)
+{
+s_imageBackground_1[i] = new Image();
+s_imageBackground_1[i].src = u_obj.s_imageBackground_1[i];
+}
+
+for(var i = 0; i < u_obj.s_imageBackground_0.length; i++)
+{
+s_imageBackground_0[i] = new Image();
+s_imageBackground_0[i].src = u_obj.s_imageBackground_0[i];
+}
+
+for(var i = 0; i < u_obj.s_imageBricks_0.length;i++)
+{
+s_imageBricks_0[i] = new Image();
+s_imageBricks_0[i].src = u_obj.s_imageBackground_0[i];
+}
+
+for(var i = 0; i < u_obj.s_sounds_1.length;i++)
+{
+s_sounds_1[i] = new Audio();
+s_sounds_1[i].src = u_objs.s_sounds_1[i];
+}
+
+for(var i = 0; i < u_obj.s_sounds_0.length;i++)
+{
+	s_sounds_0[i] = new Audio();
+	s_sounds_0[i].src = u_objs.s_sounds_0[i];
+}
+}
+
 
 window.resourcesLoad = function(){
 	var aWidth = $(window).width() + "px";
@@ -740,22 +721,22 @@ window.resourcesLoad = function(){
 	sum = 0;
 	$("#mask").css({"width":aWidth, "height":aHeight,"position":"absolute","top":"0px", "left":"0px","z-index":"1000","filter":"alpha(opacity = 1","background":"#fff","opacity":1,"display":"block"});
 	//资源加载
-s_imageBang_1.onload=callBack;
-s_imageBall_1.onload = callBack;
-s_imageBang_0.onload = callBack;
-s_imageBall_0.onload = callBack;
-for(var i = 0; i < 6; i++)
-s_imageBricks_1[i].onload = callBack;
+	s_imageBang_1.onload=callBack;
+	s_imageBall_1.onload = callBack;
+	s_imageBang_0.onload = callBack;
+	s_imageBall_0.onload = callBack;
+	for(var i = 0; i < 6; i++)
+	s_imageBricks_1[i].onload = callBack;
 
-for(var i = 0; i < 30; i++)
-s_imageBackground_1[i].onload = callBack;
+	for(var i = 0; i < 30; i++)
+	s_imageBackground_1[i].onload = callBack;
 
-for(var i = 0; i < 30; i++)
-s_imageBackground_0[i].onload = callBack;
+	for(var i = 0; i < 30; i++)
+	s_imageBackground_0[i].onload = callBack;
 
-for(var i = 0; i < 6; i++)
-s_imageBricks_0[i].onload = callBack;
-sum = l = 76;
+	for(var i = 0; i < 6; i++)
+	s_imageBricks_0[i].onload = callBack;
+	sum = l = 76;
 	//图片加载回调函数
 	function callBack(){
 		l--;
@@ -769,20 +750,10 @@ sum = l = 76;
 	
 };
 
-$(document).ready(resourcesLoad);
+
+
 var s_map_0 = new Array();
 
-/*s_map_1[10] =   [[1,1,1,1,1,1,1,1,1,5],
-				[1,1,1,2,1,1,1,1,1,1],
-				[1,1,1,1,1,1,1,1,1,1],
-				[1,1,1,2,1,1,1,1,1,1],
-				[1,1,1,1,1,1,2,1,1,1],
-				[1,1,1,2,1,1,1,1,1,1],
-				[1,1,1,1,1,1,1,1,1,1],
-				[1,1,1,1,7,7,1,1,1,1],
-				[4,1,1,7,7,7,7,1,1,1],
-				[1,1,7,7,7,7,7,7,1,1]];*/
-				
 s_map_0[0]   =  [[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,1,7,7,7,7,7,7],
@@ -886,6 +857,8 @@ s_map_0[8]  =	[[7,7,7,7,7,7,7,7,7,7,7],
 				[7,1,7,7,7,2,7,7,7,7,7],
 				[7,1,7,7,7,2,2,2,2,2,7]];
 				
+				
+				
 var s_map_1= new Array();
 
 s_map_1[2] =   [[7,7,7,7,7,7,7,7,7,7,7],
@@ -943,9 +916,15 @@ s_map_1[0] = 	[[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7]];
 
-	
+$(document).ready(function(){
+$.getJSON("Game.json",function(data){
+		u_obj=data;
+		w_getSrc();
+		window.resourcesLoad();
+		});
+});
 
-//////////////////界面交互函数////////////////////////////
+//////////////////界面交互函数////////////////////////////             //界面函数部分只用到u_gamgStart和u_gameTimer两个全局变量和w_start一个全局函数
 var u_mode=0;
 var u_level=1;
 var u_balls=2;
@@ -959,96 +938,91 @@ $("#crazymode").click(function () {
   $($("li")[0]).css("display","none");
   $($("li")[7]).css("display","block");
 });
-	$($(".level0")[0]).click(function() {
-	  u_level=1;
-	  $($("li")[6]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();  
-	});
-	$($(".level0")[1]).click(function() {
-	  u_level=2;
-	  $($("li")[6]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	  
-	});
-	$($(".level0")[2]).click(function() {
-	  u_level=3;
-	  $($("li")[6]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	  
-	});
-	$($(".level0")[3]).click(function() {
-	  u_level=4;
-	  $($("li")[6]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	  
-	});
-	$($(".level0")[4]).click(function() {
-	  u_level=5;
-	  $($("li")[6]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	  
-	});
-	$($(".level0")[5]).click(function() {
-	  u_level=6;
-	  $($("li")[6]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	  
-	});
-	$($(".level0")[6]).click(function() {
+$($(".level0")[0]).click(function() {
+	u_level=1;
+	$($("li")[6]).css("display","none");
+	$($("li")[1]).css("display","block");
+	$("#levelname")[0].innerText="Level"+(u_level);
+	$("#ballsleft")[0].innerText="Ball:"+(u_balls);
+	u_canvas=document.getElementById('ctx');
+	u_ctx=u_canvas.getContext('2d');
+	u_width = u_canvas.width;
+	u_height = u_canvas.height;
+	u_gameStart = window.clearInterval(u_gameStart);
+  	u_gameTimer = window.clearInterval(u_gameTimer);
+ 	w_start();  
+});
+$($(".level0")[1]).click(function() {
+	u_level=2;
+	$($("li")[6]).css("display","none");
+	$($("li")[1]).css("display","block");
+	$("#levelname")[0].innerText="Level"+(u_level);
+	$("#ballsleft")[0].innerText="Ball:"+(u_balls);
+	u_canvas=document.getElementById('ctx');
+	u_ctx=u_canvas.getContext('2d');
+	u_width = u_canvas.width;
+	u_height = u_canvas.height;
+	u_gameStart = window.clearInterval(u_gameStart);
+  	u_gameTimer = window.clearInterval(u_gameTimer);
+	w_start();
+});
+$($(".level0")[2]).click(function() {
+	u_level=3;
+	$($("li")[6]).css("display","none");
+	$($("li")[1]).css("display","block");
+	$("#levelname")[0].innerText="Level"+(u_level);
+	$("#ballsleft")[0].innerText="Ball:"+(u_balls);
+	u_canvas=document.getElementById('ctx');
+	u_ctx=u_canvas.getContext('2d');
+	u_width = u_canvas.width;
+	u_height = u_canvas.height;
+	u_gameStart = window.clearInterval(u_gameStart);
+ 	u_gameTimer = window.clearInterval(u_gameTimer);
+	w_start();
+});
+$($(".level0")[3]).click(function() {
+	u_level=4;
+	$($("li")[6]).css("display","none");
+	$($("li")[1]).css("display","block");
+	$("#levelname")[0].innerText="Level"+(u_level);
+	$("#ballsleft")[0].innerText="Ball:"+(u_balls);
+	u_canvas=document.getElementById('ctx');
+	u_ctx=u_canvas.getContext('2d');
+	u_width = u_canvas.width;
+	u_height = u_canvas.height;
+	u_gameStart = window.clearInterval(u_gameStart);
+  	u_gameTimer = window.clearInterval(u_gameTimer);
+	w_start();
+});
+$($(".level0")[4]).click(function() {
+	 u_level=5;
+	 $($("li")[6]).css("display","none");
+	 $($("li")[1]).css("display","block");
+	 $("#levelname")[0].innerText="Level"+(u_level);
+	 $("#ballsleft")[0].innerText="Ball:"+(u_balls);
+	 u_canvas=document.getElementById('ctx');
+	 u_ctx=u_canvas.getContext('2d');
+	 u_width = u_canvas.width;
+	 u_height = u_canvas.height;
+	 u_gameStart = window.clearInterval(u_gameStart);
+  	 u_gameTimer = window.clearInterval(u_gameTimer);
+	 w_start();
+});
+$($(".level0")[5]).click(function() {
+	 u_level=6;
+	 $($("li")[6]).css("display","none");
+	 $($("li")[1]).css("display","block");
+	 $("#levelname")[0].innerText="Level"+(u_level);
+	 $("#ballsleft")[0].innerText="Ball:"+(u_balls);
+	 u_canvas=document.getElementById('ctx');
+	 u_ctx=u_canvas.getContext('2d');
+	 u_width = u_canvas.width;
+	 u_height = u_canvas.height;
+	 u_gameStart = window.clearInterval(u_gameStart);
+  	 u_gameTimer = window.clearInterval(u_gameTimer);
+	 w_start();
+});
+$($(".level0")[6]).click(function() {
 	  u_level=7;
 	  $($("li")[6]).css("display","none");
 	  $($("li")[1]).css("display","block");
@@ -1061,9 +1035,8 @@ $("#crazymode").click(function () {
 	   u_gameStart = window.clearInterval(u_gameStart);
   u_gameTimer = window.clearInterval(u_gameTimer);
 	  w_start();
-	  
-	});
-	$($(".level0")[7]).click(function() {
+});
+$($(".level0")[7]).click(function() {
 	  u_level=8;
 	  $($("li")[6]).css("display","none");
 	  $($("li")[1]).css("display","block");
@@ -1073,12 +1046,12 @@ $("#crazymode").click(function () {
 	  u_ctx=u_canvas.getContext('2d');
 	  u_width = u_canvas.width;
 	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
+	  u_gameStart = window.clearInterval(u_gameStart);
+  	 u_gameTimer = window.clearInterval(u_gameTimer);
 	  w_start();
 	  
-	});
-	$($(".level0")[8]).click(function() {
+});
+$($(".level0")[8]).click(function() {
 	  u_level=9;
 	  $($("li")[6]).css("display","none");
 	  $($("li")[1]).css("display","block");
@@ -1088,12 +1061,11 @@ $("#crazymode").click(function () {
 	  u_ctx=u_canvas.getContext('2d');
 	  u_width = u_canvas.width;
 	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
+	  u_gameStart = window.clearInterval(u_gameStart);
+      u_gameTimer = window.clearInterval(u_gameTimer);
 	  w_start();
-	  
-	});
-	$($(".level0")[9]).click(function() {
+});
+$($(".level0")[9]).click(function() {
 	  u_level=10;
 	  $($("li")[6]).css("display","none");
 	  $($("li")[1]).css("display","block");
@@ -1103,12 +1075,11 @@ $("#crazymode").click(function () {
 	  u_ctx=u_canvas.getContext('2d');
 	  u_width = u_canvas.width;
 	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	  
-	});
-	$($(".level1")[0]).click(function () {
+	  u_gameStart = window.clearInterval(u_gameStart);
+      u_gameTimer = window.clearInterval(u_gameTimer);
+	  w_start();  
+});
+$($(".level1")[0]).click(function () {
 	  u_level=1;
 	  $($("li")[7]).css("display","none");
 	  $($("li")[1]).css("display","block");
@@ -1121,8 +1092,8 @@ $("#crazymode").click(function () {
 	   u_gameStart = window.clearInterval(u_gameStart);
   u_gameTimer = window.clearInterval(u_gameTimer);
 	  w_start();
-	});
-	$($(".level1")[1]).click(function () {
+});
+$($(".level1")[1]).click(function () {
 	  u_level=2;
 	  $($("li")[7]).css("display","none");
 	  $($("li")[1]).css("display","block");
@@ -1135,8 +1106,8 @@ $("#crazymode").click(function () {
 	   u_gameStart = window.clearInterval(u_gameStart);
   u_gameTimer = window.clearInterval(u_gameTimer);
 	  w_start();
-	});
-	$($(".level1")[2]).click(function () {
+});
+$($(".level1")[2]).click(function () {
 	  u_level=3;
 	  $($("li")[7]).css("display","none");
 	  $($("li")[1]).css("display","block");
@@ -1146,11 +1117,11 @@ $("#crazymode").click(function () {
 	  u_ctx=u_canvas.getContext('2d');
 	  u_width = u_canvas.width;
 	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
+	  u_gameStart = window.clearInterval(u_gameStart);
+      u_gameTimer = window.clearInterval(u_gameTimer);
 	  w_start();
-	});
-	$($(".level1")[3]).click(function () {
+});
+$($(".level1")[3]).click(function () {
 	  u_level=4;
 	  $($("li")[7]).css("display","none");
 	  $($("li")[1]).css("display","block");
@@ -1160,11 +1131,11 @@ $("#crazymode").click(function () {
 	  u_ctx=u_canvas.getContext('2d');
 	  u_width = u_canvas.width;
 	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
+	  u_gameStart = window.clearInterval(u_gameStart);
+      u_gameTimer = window.clearInterval(u_gameTimer);
 	  w_start();
-	});
-	$($(".level1")[4]).click(function () {
+});
+$($(".level1")[4]).click(function () {
 	  u_level=5;
 	  $($("li")[7]).css("display","none");
 	  $($("li")[1]).css("display","block");
@@ -1174,10 +1145,10 @@ $("#crazymode").click(function () {
 	  u_ctx=u_canvas.getContext('2d');
 	  u_width = u_canvas.width;
 	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
+	  u_gameStart = window.clearInterval(u_gameStart);
+      u_gameTimer = window.clearInterval(u_gameTimer);
 	  w_start();
-	});
+});
 $("#helpbutton").click(function(){
   $($("li")[0]).css("display","none");
   $($("li")[4]).css("display","block");
