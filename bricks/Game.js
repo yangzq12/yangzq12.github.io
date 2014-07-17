@@ -739,16 +739,11 @@ s_sounds_0[3].volume = 0.6;
 
 window.resourcesLoad = function(){
 	var aWidth = $(window).width() + "px";
-	var aHeight = $("body").height() + "px";
+	var aHeight = $(window).height() + "px";
 	
 	l = 0;
 	sum = 0;
-	$("#mask").css({"width":aWidth, "height":aHeight,"position":"absolute","top":"0px", "left":"0px","z-index":"1000","filter":"alpha(opacity = 1","background":"#efefef","opacity":1,"display":"block"});
-	
-	var loadDiv = '<div id = "loadContainer">资源加载中。。。<div id = "loadBarContainer"><span id ="loadBar"></span></div></div>'
-	
-	$("#mask").append($(loadDiv));
-	
+	$("#mask").css({"width":aWidth, "height":aHeight,"position":"absolute","top":"0px", "left":"0px","z-index":"1000","filter":"alpha(opacity = 1","background":"#fff","opacity":1,"display":"block"});
 	//资源加载
 s_imageBang_1.onload=callBack;
 s_imageBall_1.onload = callBack;
