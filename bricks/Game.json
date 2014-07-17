@@ -1,4 +1,4 @@
-// JavaScript Document
+
 {
     "s_imageBang_1": "image/padd.png",
     "s_imageBall_1": "image/ball.jpg",
@@ -12,9 +12,6 @@
         "image/podium.gif",
         "image/win.jpg"
     ],
-	
-	
-	
     "s_imageBackground_1": [
         "image/background/background_1.JPG",
         "image/background/background_2.JPG",
