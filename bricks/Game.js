@@ -653,7 +653,7 @@ var u_map;
 var u_sounds;
 var u_soundOn = true;
 var u_ballUpOrDown = true;//true表示球在下面，false表示球在上面
-var u_obj = new Object();
+var u_obj = null;
 
 var s_imageBang_1 = new Image();        //所有资源以s开头
 var s_imageBall_1 = new Image();
