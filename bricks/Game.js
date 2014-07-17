@@ -2,6 +2,27 @@
 //////////////////////////定义对象//////////////////////////////////////
 
 //小球对象
+function Time(){
+	
+	this.timeCounter = 0;
+    this.minutes = 0;
+	this.seconds = 0; 
+	
+	this.timeCount = function(){
+	u_myTime.timeCounter++;
+	u_myTime.minutes = Math.floor(u_myTime.timeCounter / 60);
+   	u_myTime.seconds = u_myTime.timeCounter % 60;
+}
+	this.draw = function(ctx){
+		var that = this;
+		ctx.font="30px Verdana";
+// Create gradient
+// Fill with gradient
+ctx.fillStyle="black";
+	//ctx.fillstyle = "#fff";
+    ctx.fillText('用时: ' + that.minutes + '分' + that.seconds+'秒', 550, 50);
+	}
+}
 function Ball(x, y, r, dx, dy, image, auto) {      //球，这里把小球当做一个正方形，
     this.x = x;            //小球圆点坐标（x,y)
     this.y = y;
@@ -282,23 +303,14 @@ function Control(){
                 	break;
 				case 17:
 					u_myBang.stick = false;
-        	}	
-    	});
-		x = 0;
-		$(window).keyup(function(event){
-			if(event.keyCode == 32)
-			{
-				
+					break;
+				case 32:
+					
 				if(u_myBall.auto == false)
-				u_myBall.auto = true;	
-			}
-			if(event.keyCode == 83)
-			{
-				u_pause = (u_pause == true)? false:true;
-				x++;
-				w_pauseOrStart();
-			}
-		});
+				u_myBall.auto = true;
+						
+        	}
+    	});
 		
 		$("canvas").click(function(event){
 				var iCanvX = event.pageX-$(u_canvas).offset().left;
@@ -481,7 +493,7 @@ function w_restart(){
 	u_myBall = new Ball(u_width/2 + u_ballToBang,u_bangH+u_ballR+1,u_ballR, u_ballSpeedX, u_ballSpeedY, u_imageBall, false);
 			      
 					u_gameStart=setInterval(w_gameStep,u_speedTime);
-					u_gameTimer=setInterval(w_timeCount,1000);
+					u_gameTimer=setInterval(u_myTime.timeCount,1000);
 			    }, 1000)
 			}
 function w_gameOver(){
@@ -539,33 +551,18 @@ function w_gameStep(){
 	u_myBang.draw(u_ctx);
 	u_myBall.draw(u_ctx);
 	u_myBangUp.draw(u_ctx);
-	
+	u_myTime.draw(u_ctx);
 	u_myBall.step(u_myBang,u_height,u_width,u_myControl,u_myBricks,u_myAnimal);
 	u_myBang.step(u_height,u_width,u_myControl);
 	u_myBangUp.step(u_height,u_width,u_myControl);
 }
 
-function w_timeCount(){
-	u_timeCounter++;
-	u_min = Math.floor(u_timeCounter / 60);
-    u_sec = u_timeCounter % 60;
-}//时间
+//时间
 
-function w_pauseOrStart(){
-	if(u_pause == true)
-	{
-		u_gameStart = clearInterval(u_gameStart);
-		u_gameTimer = clearInterval(u_gameTimer);
-	}
-	else{
-		u_gameStart =setInterval(w_gameStep,u_speedTime);
-		u_gameTimer =setInterval(w_timeCount,1000);
-	}
-}//控制暂停、开始
 
 function w_start(){	
 	w_chooseModeAndLevel()
-	
+	u_myTime = new Time();
 	u_myBang = new Bang(u_width/2, u_height-u_bangH, u_bangW, u_bangH, u_bangSpeedX, 0, u_imageBang,false); 
 							
 	u_myBangUp = new Bang(u_width/2, 0, u_bangW, u_bangH, u_bangSpeedX, 0, u_imageBang,false); 
@@ -587,7 +584,7 @@ function w_start(){
 		         
 	u_gameStart = setInterval(w_gameStep,u_speedTime);
 
-	u_gameTimer = setInterval(w_timeCount,1000);
+	u_gameTimer = setInterval(u_myTime.timeCount,1000);
 }//开始游戏，重新开始游戏
 
 function w_chooseModeAndLevel(){
@@ -624,7 +621,7 @@ function w_chooseModeAndLevel(){
 
 var u_canvas, u_ctx;  //全局变量以u开头
 var u_width, u_height;
-
+var u_myTime;
 var u_myBang;
 var u_myBall;
 var u_myControl;
@@ -639,8 +636,6 @@ var u_imageBricks = new Array();
 
 var u_gameStart = 0;  //游戏时间种子
 var u_gameTimer;//计时时间种子
-var u_timeCounter = 0;
-var u_min = u_sec = 0; 
 
 var u_pause = false;// 
 
