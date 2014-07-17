@@ -145,29 +145,12 @@ button
 	background: #783d10;
 	color:white;
 }
-#levelSelect0 p
+#footer
 {
-	margin-top:50px;
-	margin-bottom:0px;
-	font-size:103px;
-	font-family:"Buxton Sketch";
-	color:#783d10;
-}
-#levelSelect1 p
-{
-	margin-top:50px;
-	margin-bottom:0px;
-	font-size:103px;
-	font-family:"Buxton Sketch";
-	color:#783d10;
-}
-.level0
-{
-	margin-left:30px;
-	margin-right:30px;
-}
-.level1
-{
-	margin-left:30px;
-	margin-right:30px;
+	width:1000px;
+	background: beige;
+	opacity: 1;
+	height:20px;
+	font-size:12px;
+	font-family: "微软雅黑";
 }

@@ -284,18 +284,16 @@ function Control(){
 					u_myBang.stick = false;
         	}	
     	});
-		x = 0;
-		$(window).keyup(function(event){
+		$(window).keypress(function(event){
 			if(event.keyCode == 32)
 			{
 				
 				if(u_myBall.auto == false)
 				u_myBall.auto = true;	
 			}
-			if(event.keyCode == 83)
+			if(event.keyCode == 115)
 			{
 				u_pause = (u_pause == true)? false:true;
-				x++;
 				w_pauseOrStart();
 			}
 		});
@@ -480,8 +478,8 @@ function w_restart(){
 	else
 	u_myBall = new Ball(u_width/2 + u_ballToBang,u_bangH+u_ballR+1,u_ballR, u_ballSpeedX, u_ballSpeedY, u_imageBall, false);
 			      
-					u_gameStart=setInterval(w_gameStep,u_speedTime);
-					u_gameTimer=setInterval(w_timeCount,1000);
+					u_gameStart=window.setInterval(w_gameStep,u_speedTime);
+					u_gameTimer=window.setInterval(w_timeCount,1000);
 			    }, 1000)
 			}
 function w_gameOver(){
@@ -491,18 +489,14 @@ function w_gameOver(){
 	{
 		u_winOrLose = false;
 		u_sounds[2].play();
-			if(u_mode == 0 && u_level == 9|| u_mode == 1 && u_level == 5)
-			{
-			$($("li")[1]).css("display","none");
-  			$($("li")[5]).css("display","block");
-			}
-			else{
+			u_gameStart = clearInterval(u_gameStart);
+			u_gameTimer = clearInterval(u_gameTimer);
 			$(function(){
 			setTimeout(function(){
 			  $($('li')[1]).css('display','none');
 				$($("li")[2]).css("display","block");
 			  },1000)
-			});}
+			});
 	}
 	else
 	{
@@ -515,7 +509,8 @@ function w_gameOver(){
 			}
 			else 
 			{
-			 
+			  u_gameStart = clearInterval(u_gameStart);
+			  u_gameTimer = clearInterval(u_gameTimer);
 			  $(function(){
 			  setTimeout(function(){
 				$($('li')[1]).css('display','none');
@@ -554,12 +549,12 @@ function w_timeCount(){
 function w_pauseOrStart(){
 	if(u_pause == true)
 	{
-		u_gameStart = clearInterval(u_gameStart);
-		u_gameTimer = clearInterval(u_gameTimer);
+		u_gameStart = window.clearInterval(u_gameStart);
+		u_gameTimer = window.clearInterval(u_gameTimer);
 	}
 	else{
-		u_gameStart =setInterval(w_gameStep,u_speedTime);
-		u_gameTimer =setInterval(w_timeCount,1000);
+		u_gameStart = window.setInterval(w_gameStep,u_speedTime);
+		u_gameTimer = window.setInterval(w_timeCount,1000);
 	}
 }//控制暂停、开始
 
@@ -585,9 +580,9 @@ function w_start(){
 		
 	u_myControl.defineControl();
 		         
-	u_gameStart = setInterval(w_gameStep,u_speedTime);
+	u_gameStart = window.setInterval(w_gameStep,u_speedTime);
 
-	u_gameTimer = setInterval(w_timeCount,1000);
+	u_gameTimer = window.setInterval(w_timeCount,1000);
 }//开始游戏，重新开始游戏
 
 function w_chooseModeAndLevel(){
@@ -610,8 +605,6 @@ function w_chooseModeAndLevel(){
 		u_map = s_map_0[u_level-1];
 		if(u_level == 2 || u_level == 4)
 		u_ballUpOrDown = false;
-		else
-		u_ballUpOrDown = true;
 		u_speedTime = 10-Math.floor(u_level/2);
 	}
 }
@@ -737,49 +730,6 @@ s_sounds_0[2].volume = 0.6;
 s_sounds_0[3] = new Audio('audio/lose.mp3');
 s_sounds_0[3].volume = 0.6;
 
-window.resourcesLoad = function(){
-	var aWidth = $(window).width() + "px";
-	var aHeight = $("body").height() + "px";
-	
-	l = 0;
-	sum = 0;
-	$("#mask").css({"width":aWidth, "height":aHeight,"position":"absolute","top":"0px", "left":"0px","z-index":"1000","filter":"alpha(opacity = 1","background":"#efefef","opacity":1,"display":"block"});
-	
-	var loadDiv = '<div id = "loadContainer">资源加载中。。。<div id = "loadBarContainer"><span id ="loadBar"></span></div></div>'
-	
-	$("#mask").append($(loadDiv));
-	
-	//资源加载
-s_imageBang_1.onload=callBack;
-s_imageBall_1.onload = callBack;
-s_imageBang_0.onload = callBack;
-s_imageBall_0.onload = callBack;
-for(var i = 0; i < 6; i++)
-s_imageBricks_1[i].onload = callBack;
-
-for(var i = 0; i < 30; i++)
-s_imageBackground_1[i].onload = callBack;
-
-for(var i = 0; i < 30; i++)
-s_imageBackground_0[i].onload = callBack;
-
-for(var i = 0; i < 6; i++)
-s_imageBricks_0[i].onload = callBack;
-sum = l = 76;
-	//图片加载回调函数
-	function callBack(){
-		l--;
-		$("#loadBar").css("width",aWidth*(sum-l)/sum + "px");
-		if(l == 0)
-		{
-          $('#mask').css({'position':'absolute', 'z-index':'3000', 'width':aWidth, 'height':aHeight, 'filter':'alpha(opacity=1)', 'opacity':1, 'top':0, 'left':0, 'background':'#CCC', 'display':'none'});  
-          $('#loadContainer').remove();  
-		}
-	}
-	
-};
-
-$(document).ready(resourcesLoad);
 var s_map_0 = new Array();
 
 /*s_map_1[10] =   [[1,1,1,1,1,1,1,1,1,5],
@@ -898,57 +848,57 @@ s_map_0[8]  =	[[7,7,7,7,7,7,7,7,7,7,7],
 				
 var s_map_1= new Array();
 
-s_map_1[2] =   [[7,7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,1,7,7,7],
-				[7,7,2,1,1,2,1,5,7,0,0],
-				[7,7,1,1,2,1,1,1,7,7,0],
-				[7,7,1,2,1,3,3,1,7,0,0],
-				[7,0,4,1,1,1,1,2,0,7,0],
-				[7,0,7,7,7,7,7,1,7,0,0],
-				[1,7,1,7,7,1,7,7,7,0,0],
-				[1,0,0,0,0,0,0,0,0,0,1]];
-
-s_map_1[4] =    [[7,7,7,7,7,7,7,7,7,7,7],
+s_map_1[1] =   [[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7],
-				[7,1,1,1,1,1,1,1,1,1,7],
-				[7,1,1,2,1,1,2,1,1,1,7],
-				[7,1,3,1,1,1,5,2,1,1,7],
-				[0,3,1,1,1,1,2,1,1,1,7],
-				[0,4,1,2,1,1,1,1,1,1,7],
+				[7,7,2,1,1,1,1,5,7,7,7],
+				[7,7,1,1,1,1,1,1,7,7,7],
+				[7,7,1,1,1,3,3,1,7,7,7],
+				[7,7,4,1,1,1,1,2,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7]];
-				
-s_map_1[1] =   [[7,7,7,7,7,7,7,7,7,7,7],
+
+s_map_1[0] =    [[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,1,1,1,1,2,1,7,7,7],
-				[2,2,2,2,1,1,5,2,7,7,7],
+				[7,7,1,1,1,1,5,2,7,7,7],
 				[7,7,4,1,1,1,2,1,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7]];
 				
+s_map_1[2] =   [[7,7,7,7,7,7,7,7,7,7,7],
+				[7,2,1,2,1,2,1,2,2,7,7],
+				[7,2,7,7,7,7,7,7,2,7,7],
+				[7,2,2,1,1,1,1,1,2,7,7],
+				[7,2,1,1,1,1,1,1,2,7,7],
+				[7,2,1,1,1,3,3,1,2,7,7],
+				[7,2,1,1,1,1,1,2,2,7,7],
+				[7,2,2,2,3,3,2,2,2,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7]];
+				
 s_map_1[3] =   [[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7],
-				[7,0,0,0,7,7,7,7,0,7,7],
-				[7,0,2,1,1,1,1,2,7,7,7],
-				[7,0,1,1,1,1,1,3,7,7,7],
-				[7,0,2,1,1,3,5,1,0,7,7],
-				[7,0,4,2,1,1,1,3,0,7,7],
-				[7,0,7,0,7,0,7,7,0,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7,7],
+				[7,7,1,1,1,1,1,1,7,7,7],
+				[7,7,1,1,1,3,3,1,7,7,7],
+				[7,7,1,1,1,1,1,2,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7]
 				[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7]];
 
-s_map_1[0] = 	[[7,7,7,7,7,7,7,7,7,7,7],
+s_map_1[4] = 	[[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7,7],
 				[7,7,1,1,1,1,1,1,7,7,7],
-				[7,7,1,1,1,0,1,2,7,7,7],
-				[7,7,1,1,0,1,0,5,7,7,7],
-				[7,7,4,1,1,0,1,2,7,7,7],
-				[7,7,1,1,1,1,1,1,7,7,7],
+				[7,7,1,1,1,3,3,1,7,7,7],
+				[7,7,1,1,1,1,1,2,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7]];
@@ -969,8 +919,10 @@ $("#crazymode").click(function () {
   $($("li")[0]).css("display","none");
   $($("li")[7]).css("display","block");
 });
-	$($(".level0")[0]).click(function() {
-	  u_level=1;
+for (i=0;i<9;i++)
+{
+	$($(".level0")[i]).click(function () {
+	  u_level=i+1;
 	  $($("li")[6]).css("display","none");
 	  $($("li")[1]).css("display","block");
 	  $("#levelname")[0].innerText="Level"+(u_level);
@@ -979,147 +931,13 @@ $("#crazymode").click(function () {
 	  u_ctx=u_canvas.getContext('2d');
 	  u_width = u_canvas.width;
 	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();  
-	});
-	$($(".level0")[1]).click(function() {
-	  u_level=2;
-	  $($("li")[6]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
 	  w_start();
-	  
 	});
-	$($(".level0")[2]).click(function() {
-	  u_level=3;
-	  $($("li")[6]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	  
-	});
-	$($(".level0")[3]).click(function() {
-	  u_level=4;
-	  $($("li")[6]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	  
-	});
-	$($(".level0")[4]).click(function() {
-	  u_level=5;
-	  $($("li")[6]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	  
-	});
-	$($(".level0")[5]).click(function() {
-	  u_level=6;
-	  $($("li")[6]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	  
-	});
-	$($(".level0")[6]).click(function() {
-	  u_level=7;
-	  $($("li")[6]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	  
-	});
-	$($(".level0")[7]).click(function() {
-	  u_level=8;
-	  $($("li")[6]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	  
-	});
-	$($(".level0")[8]).click(function() {
-	  u_level=9;
-	  $($("li")[6]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	  
-	});
-	$($(".level0")[9]).click(function() {
-	  u_level=10;
-	  $($("li")[6]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	  
-	});
-	$($(".level1")[0]).click(function () {
-	  u_level=1;
+}
+for (i=0;i<5;i++)
+{
+	$($(".level0")[i]).click(function () {
+	  u_level=i+1;
 	  $($("li")[7]).css("display","none");
 	  $($("li")[1]).css("display","block");
 	  $("#levelname")[0].innerText="Level"+(u_level);
@@ -1128,66 +946,9 @@ $("#crazymode").click(function () {
 	  u_ctx=u_canvas.getContext('2d');
 	  u_width = u_canvas.width;
 	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
 	  w_start();
 	});
-	$($(".level1")[1]).click(function () {
-	  u_level=2;
-	  $($("li")[7]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	});
-	$($(".level1")[2]).click(function () {
-	  u_level=3;
-	  $($("li")[7]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	});
-	$($(".level1")[3]).click(function () {
-	  u_level=4;
-	  $($("li")[7]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	});
-	$($(".level1")[4]).click(function () {
-	  u_level=5;
-	  $($("li")[7]).css("display","none");
-	  $($("li")[1]).css("display","block");
-	  $("#levelname")[0].innerText="Level"+(u_level);
-	  $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-	  u_canvas=document.getElementById('ctx');
-	  u_ctx=u_canvas.getContext('2d');
-	  u_width = u_canvas.width;
-	  u_height = u_canvas.height;
-	   u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
-	  w_start();
-	});
+}
 $("#helpbutton").click(function(){
   $($("li")[0]).css("display","none");
   $($("li")[4]).css("display","block");
@@ -1207,21 +968,19 @@ $("#back").click(function(){
   u_balls=2;
 });
 $($(".littlebutton")[0]).click(function(){
-  u_gameStart = window.clearInterval(u_gameStart);
-  u_gameTimer = window.clearInterval(u_gameTimer);
   $($("li")[1]).css("display","none");
   $($("li")[0]).css("display","block");
   u_level=1;
   u_balls=2;
-  
+  u_gameStart = window.clearInterval(u_gameStart);
+  u_gameTimer = window.clearInterval(u_gameTimer);
 });
 $("#nextlevel").click(function(){
     $($("li")[2]).css("display","none");
     $($("li")[1]).css("display", "block");
-	u_level++;
     $("#levelname")[0].innerText = "Level" + (u_level);
     $("#ballsleft")[0].innerText = "Ball:" + (u_balls);
-	
+	u_level++;
 	u_balls=2;
     w_start();
 });
@@ -1230,8 +989,10 @@ $("#retry").click(function(){
 	u_balls=2;
     $($("li")[3]).css("display","none");
     $($("li")[1]).css("display", "block");
-    $("#levelname")[0].innerText = "Level" +(u_level);
+    $("#levelname")[0].innerText = "Level" + (u_level);
     $("#ballsleft")[0].innerText = "Ball:" + (u_balls);
+	u_gameStart = window.clearInterval(u_gameStart);
+	u_gameTimer = window.clearInterval(u_gameTimer);
     w_start();
   });
 $(".littleicon").click(function(){
