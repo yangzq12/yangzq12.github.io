@@ -653,7 +653,7 @@ var u_map;
 var u_sounds;
 var u_soundOn = true;
 var u_ballUpOrDown = true;//true表示球在下面，false表示球在上面
-var u_obj;
+var u_obj = new Object();
 
 var s_imageBang_1 = new Image();        //所有资源以s开头
 var s_imageBall_1 = new Image();
@@ -670,46 +670,46 @@ var s_sounds_0= new Array();
 
 function w_getSrc()
 {
-s_imageBang_1.src = u_obj.s_imageBang_1;
-s_imageBall_1.src = u_obj.s_imageBall_1;
-s_imageBang_0.src = u_obj.s_imageBang_0;
-s_imageBall_0.src = u_obj.s_imageBall_0;
+	s_imageBang_1.src = u_obj.s_imageBang_1;
+	s_imageBall_1.src = u_obj.s_imageBall_1;
+	s_imageBang_0.src = u_obj.s_imageBang_0;
+	s_imageBall_0.src = u_obj.s_imageBall_0;
 
-for(var i = 0; i < u_obj.s_imageBricks_1.length;i++)
-{
-	s_imageBricks_1[i] = new Image();
-	s_imageBricks_1[i].src = u_obj.s_imageBricks_1[i];
-}
+	for(var i = 0; i < u_obj.s_imageBricks_1.length;i++)
+	{
+		s_imageBricks_1[i] = new Image();
+		s_imageBricks_1[i].src = u_obj.s_imageBricks_1[i];
+	}
 
-for(var i = 0; i < u_obj.s_imageBackground_1.length; i++)
-{
-s_imageBackground_1[i] = new Image();
-s_imageBackground_1[i].src = u_obj.s_imageBackground_1[i];
-}
+	for(var i = 0; i < u_obj.s_imageBackground_1.length; i++)
+	{
+		s_imageBackground_1[i] = new Image();
+		s_imageBackground_1[i].src = u_obj.s_imageBackground_1[i];
+	}
 
-for(var i = 0; i < u_obj.s_imageBackground_0.length; i++)
-{
-s_imageBackground_0[i] = new Image();
-s_imageBackground_0[i].src = u_obj.s_imageBackground_0[i];
-}
+	for(var i = 0; i < u_obj.s_imageBackground_0.length; i++)
+	{
+		s_imageBackground_0[i] = new Image();
+		s_imageBackground_0[i].src = u_obj.s_imageBackground_0[i];
+	}
 
-for(var i = 0; i < u_obj.s_imageBricks_0.length;i++)
-{
-s_imageBricks_0[i] = new Image();
-s_imageBricks_0[i].src = u_obj.s_imageBackground_0[i];
-}
+	for(var i = 0; i < u_obj.s_imageBricks_0.length;i++)
+	{
+		s_imageBricks_0[i] = new Image();
+		s_imageBricks_0[i].src = u_obj.s_imageBricks_0[i];
+	}
 
-for(var i = 0; i < u_obj.s_sounds_1.length;i++)
-{
-s_sounds_1[i] = new Audio();
-s_sounds_1[i].src = u_objs.s_sounds_1[i];
-}
+	for(var i = 0; i < u_obj.s_sounds_1.length;i++)
+	{
+		s_sounds_1[i] = new Audio();
+		s_sounds_1[i].src = u_obj.s_sounds_1[i];
+	}
 
-for(var i = 0; i < u_obj.s_sounds_0.length;i++)
-{
-	s_sounds_0[i] = new Audio();
-	s_sounds_0[i].src = u_objs.s_sounds_0[i];
-}
+	for(var i = 0; i < u_obj.s_sounds_0.length;i++)
+	{
+		s_sounds_0[i] = new Audio();
+		s_sounds_0[i].src = u_obj.s_sounds_0[i];
+	}
 }
 
 
