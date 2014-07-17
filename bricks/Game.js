@@ -917,7 +917,7 @@ s_map_1[0] = 	[[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7]];
 
 $(document).ready(function(){
-$.getJSON("Game.json",function(data){
+$.getJSON("game.json",function(data){
 		u_obj=data;
 		w_getSrc();
 		window.resourcesLoad();
