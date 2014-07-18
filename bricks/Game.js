@@ -1,4 +1,4 @@
-﻿// JavaScript Document
+// JavaScript Document
 //////////////////////////定义对象//////////////////////////////////////
 
 //时间对象
@@ -920,11 +920,112 @@ s_map_1[0] = 	[[7,7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7,7]];
 
 $(document).ready(function(){
-$.getJSON("Game.json",function(data){
+/*$.getJSON("Game.json",function(data){
 		u_obj=data;
 		w_getSrc();
 		window.resourcesLoad();
-		});
+		});*/
+u_obj=
+{
+    "s_imageBang_1": "image/padd.png",
+    "s_imageBall_1": "image/ball.jpg",
+    "s_imageBang_0": "image/padd.png",
+    "s_imageBall_0": "image/ball.jpg",
+    "s_imageBricks_1": [
+        "image/wall.gif",
+        "image/steel.gif",
+        "image/sea.gif",
+        "image/itank.gif",
+        "image/podium.gif",
+        "image/win.jpg"
+    ],
+    "s_imageBackground_1": [
+        "image/background/background_1.JPG",
+        "image/background/background_2.JPG",
+        "image/background/background_3.JPG",
+        "image/background/background_4.JPG",
+        "image/background/background_5.JPG",
+        "image/background/background_6.JPG",
+        "image/background/background_7.JPG",
+        "image/background/background_8.JPG",
+        "image/background/background_9.JPG",
+        "image/background/background_10.JPG",
+        "image/background/background_11.JPG",
+        "image/background/background_12.JPG",
+        "image/background/background_13.JPG",
+        "image/background/background_14.JPG",
+        "image/background/background_15.JPG",
+        "image/background/background_16.JPG",
+        "image/background/background_17.JPG",
+        "image/background/background_18.JPG",
+        "image/background/background_19.JPG",
+        "image/background/background_20.JPG",
+        "image/background/background_21.JPG",
+        "image/background/background_22.JPG",
+        "image/background/background_23.JPG",
+        "image/background/background_24.JPG",
+        "image/background/background_25.JPG",
+        "image/background/background_26.JPG",
+        "image/background/background_27.JPG",
+        "image/background/background_28.JPG",
+        "image/background/background_29.JPG",
+        "image/background/background_30.JPG"
+    ],
+    "s_imageBricks_0": [
+        "image/wall.gif",
+        "image/steel.gif",
+        "image/sea.gif",
+        "image/itank.gif",
+        "image/podium.gif",
+        "image/win.jpg"
+    ],
+    "s_imageBackground_0": [
+        "image/background/background_1.JPG",
+        "image/background/background_2.JPG",
+        "image/background/background_3.JPG",
+        "image/background/background_4.JPG",
+        "image/background/background_5.JPG",
+        "image/background/background_6.JPG",
+        "image/background/background_7.JPG",
+        "image/background/background_8.JPG",
+        "image/background/background_9.JPG",
+        "image/background/background_10.JPG",
+        "image/background/background_11.JPG",
+        "image/background/background_12.JPG",
+        "image/background/background_13.JPG",
+        "image/background/background_14.JPG",
+        "image/background/background_15.JPG",
+        "image/background/background_16.JPG",
+        "image/background/background_17.JPG",
+        "image/background/background_18.JPG",
+        "image/background/background_19.JPG",
+        "image/background/background_20.JPG",
+        "image/background/background_21.JPG",
+        "image/background/background_22.JPG",
+        "image/background/background_23.JPG",
+        "image/background/background_24.JPG",
+        "image/background/background_25.JPG",
+        "image/background/background_26.JPG",
+        "image/background/background_27.JPG",
+        "image/background/background_28.JPG",
+        "image/background/background_29.JPG",
+        "image/background/background_30.JPG"
+    ],
+    "s_sounds_1": [
+        "audio/clush.mp3",
+        "audio/colla.mp3",
+        "audio/win.mp3",
+        "audio/lose.mp3"
+    ],
+    "s_sounds_0": [
+        "audio/clush.mp3",
+        "audio/colla.mp3",
+        "audio/win.mp3",
+        "audio/lose.mp3"
+    ]
+};
+		w_getSrc();
+		window.resourcesLoad();
 		//////////////////界面交互函数////////////////////////////             //界面函数部分只用到u_gamgStart和u_gameTimer两个全局变量和w_start一个全局函数
 		$("#classicmode").click(function () {
   u_mode = 0;
