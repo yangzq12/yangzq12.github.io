@@ -1,9 +1,9 @@
 
 {
-    "s_imageBang_1": "image/padd.png",
-    "s_imageBall_1": "image/ball.jpg",
-    "s_imageBang_0": "image/padd.png",
-    "s_imageBall_0": "image/ball.jpg",
+    "s_imageBang_1": "image/padd_1.png",
+    "s_imageBall_1": "image/ball.png",
+    "s_imageBang_0": "image/padd_0.jpg",
+    "s_imageBall_0": "image/ball.png",
     "s_imageBricks_1": [
         "image/wall.gif",
         "image/steel.gif",

@@ -1,4 +1,5 @@
-﻿// JavaScript Document
+﻿// JavaScript Documentw
+//网络学堂改造
 $(document).ready(function(){
 var my_div=$("<div></div>");
 var my_a=$("div.center_module");
